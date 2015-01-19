@@ -108,9 +108,7 @@ public class MainActivity extends Activity {
         //experimentEditText = (EditText) findViewById(R.id.editTextExperimentName);
         startButton = (Button) findViewById(R.id.button1);
         stopButton = (Button) findViewById(R.id.button2);
-
-        //startButton.setClickable(recording);
-        //stopButton.setClickable(!recording);
+        stopButton.setVisibility(View.INVISIBLE);
 
         // This is the drop down menu
         Spinner spinner = (Spinner) findViewById(R.id.editTextExperimentName);
@@ -152,6 +150,8 @@ public class MainActivity extends Activity {
 
                 // Display label that indicates we are recording
                 recordingView.setVisibility(View.VISIBLE);
+                stopButton.setVisibility(View.VISIBLE);
+                startButton.setVisibility(View.INVISIBLE);
 
                 // Update button clickable status
                 startButton.setClickable(recording);
@@ -202,8 +202,12 @@ public class MainActivity extends Activity {
                 // Stop recording
                 recording = false;
                 recordingView.setVisibility(View.INVISIBLE);
+                stopButton.setVisibility(View.INVISIBLE);
+                startButton.setVisibility(View.VISIBLE);
+
                 startButton.setClickable(!recording);
                 stopButton.setClickable(recording);
+                stopButton.requestFocus();
 
                 try {
                     // Close file
